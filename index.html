@@ -9,10 +9,23 @@
 <style>
 body {
   margin: 0;
-  background: #ffffff;
   font-family: 'Libre Baskerville', serif;
   text-align: center;
   color: #000;
+
+  background: url("background.png") no-repeat center center fixed;
+  background-size: cover;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.65);  /* change 0.65 to control transparency */
+  z-index: -1;
 }
 
 .container {
@@ -55,9 +68,9 @@ input {
 <h1>It Was Meant To Be</h1>
 
 <p class="subtitle">
-Welcome to Ayushwari &amp; Yash’s wedding day.
+Welcome to Ayushwari &amp; Yash’s wedding day! We hope you enjoy celebrating this beautiful moment with us.
 <br><br>
-We hope you enjoy celebrating this beautiful moment with us. To locate your table, please search for your name below.
+To locate the table you are seated at, please search for your name below.
 <br><br>
 </p>
 
