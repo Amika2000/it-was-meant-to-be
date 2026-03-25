@@ -7,20 +7,12 @@
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Libre+Baskerville&display=swap" rel="stylesheet">
 
 <style>
-
 body {
   margin: 0;
   background: #ffffff;
   font-family: 'Libre Baskerville', serif;
   text-align: center;
   color: #000;
-  animation: fadeIn 1.5s ease-in-out;
-}
-
-  
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
 }
 
 .container {
@@ -32,13 +24,6 @@ body {
 h1 {
   font-family: 'Playfair Display', serif;
   font-size: 42px;
-  margin-bottom: 10px;
-}
-
-.subtitle {
-  font-size: 18px;
-  line-height: 1.7;
-  margin-bottom: 50px;
 }
 
 input {
@@ -47,8 +32,6 @@ input {
   padding: 15px;
   font-size: 18px;
   border: 1px solid black;
-  outline: none;
-  font-family: 'Libre Baskerville', serif;
 }
 
 .result {
@@ -56,13 +39,6 @@ input {
   font-size: 24px;
   font-family: 'Playfair Display', serif;
 }
-
-.footer {
-  margin-top: 80px;
-  font-size: 14px;
-  opacity: 0.7;
-}
-
 </style>
 </head>
 
@@ -72,48 +48,37 @@ input {
 
 <h1>It Was Meant To Be</h1>
 
-<p class="subtitle">
-Welcome to Ayushwari &amp; Yash’s wedding day. Your presence makes this celebration even more special.
-<br><br>
-To locate your table, please search for your name below.
-<br><br>
-We hope you enjoy celebrating this beautiful moment with us.
+<p>
+Welcome to Ayushwari &amp; Yash’s wedding day.  
+Please search for your name below to find your table.
 </p>
 
 <input type="text" id="search" placeholder="Enter your name here">
 
 <div class="result" id="result"></div>
 
-<div class="footer">
-Thank you for being part of our special day
 </div>
 
-</div>
+<script src="https://cdn.jsdelivr.net/npm/xlsx/dist/xlsx.full.min.js"></script>
 
 <script>
 
 fetch("Ayushwari & Yash Seating Chart.xlsx")
-.then(response => response.text())
+.then(res => res.arrayBuffer())
 .then(data => {
 
-  const rows = data.split("\n").slice(1);
+  const workbook = XLSX.read(data);
+  const sheet = workbook.Sheets[workbook.SheetNames[0]];
+  const rows = XLSX.utils.sheet_to_json(sheet);
 
-  const guests = rows.map(row => {
-    const [name, table] = row.split(",");
-    return {
-      name: name.toLowerCase(),
-      table: table
-    };
-  });
+  const guests = rows.map(r => ({
+    name: r.Name.toLowerCase(),
+    table: r.Table
+  }));
 
   document.getElementById("search").addEventListener("input", function(e) {
 
-    const value = e.target.value.toLowerCase().trim();
-
-    if(value.length < 2){
-      document.getElementById("result").innerHTML = "";
-      return;
-    }
+    const value = e.target.value.toLowerCase();
 
     const match = guests.find(g => g.name.includes(value));
 
@@ -127,7 +92,6 @@ fetch("Ayushwari & Yash Seating Chart.xlsx")
   });
 
 });
-
 </script>
 
 </body>
