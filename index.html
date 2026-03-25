@@ -26,6 +26,12 @@ h1 {
   font-size: 42px;
 }
 
+.subtitle {
+  font-size: 18px;
+  line-height: 1.7;
+  margin-bottom: 50px;
+}  
+  
 input {
   width: 320px;
   max-width: 90%;
@@ -48,12 +54,21 @@ input {
 
 <h1>It Was Meant To Be</h1>
 
-<p>
-Welcome to Ayushwari &amp; Yash’s wedding day.  
-Please search for your name below to find your table.
+<p class="subtitle">
+Welcome to Ayushwari &amp; Yash’s wedding day. Your presence makes this celebration even more special.
+<br><br>
+To locate your table, please search for your name below.
+<br><br>
+We hope you enjoy celebrating this beautiful moment with us.
 </p>
 
 <input type="text" id="search" placeholder="Enter your name here">
+
+<div class="result" id="result"></div>
+
+<div class="footer">
+Thank you for being part of our special day
+</div>
 
 <div class="result" id="result"></div>
 
