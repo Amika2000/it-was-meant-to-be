@@ -4,7 +4,8 @@
 <meta charset="UTF-8">
 <title>Find Your Table</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;500;600&family=Great+Vibes&family=Allura&display=swap" rel="stylesheet">
+/* font loading */
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=Lora:wght@400;500&family=Allura&display=swap" rel="stylesheet"> 
 
 <style>
 body {
@@ -41,7 +42,7 @@ body::before {                     /*for transparent screen at top */
 }
 
 h1 {
-  font-family: 'Great Vibes', cursive;
+  font-family: 'Playfair Display', serif;
   font-size: 60px;
   margin-top: 0;
   margin-bottom: 40px;   /* THIS creates the space before the paragraph */
@@ -117,7 +118,7 @@ fetch("Ayushwari & Yash Seating Chart.xlsx")
 
     if(match){
       document.getElementById("result").innerHTML =
-        match.name.toUpperCase() + "<br>Table " + match.table;
+        match.name + "<br>Table " + match.table;
     } else {
       document.getElementById("result").innerHTML = "Name not found";
     }
