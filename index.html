@@ -8,15 +8,14 @@
 
 <style>
 body {
-  height: 100vh;
+  margin: 0;
+  min-height: 100vh;   /* instead of height: 100vh */
   font-family: 'Libre Baskerville', serif;
   text-align: center;
   color: #000;
 
   display: flex;
-  align-items: flex-start;  /* not perfectly vertical centred, but just about */
-  padding-top: 120px;    
-  justify-content: center; /* horizontal centre */
+  justify-content: center;   /* keeps it centred horizontally */
 
   background: url("background.png") no-repeat center center fixed;
   background-size: 120% auto; /* width slightly bigger than 100%, height adjusts automatically */
