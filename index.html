@@ -14,8 +14,9 @@ body {
   text-align: center;
   color: #000;
 
-  display: flex;
-  justify-content: center;   /* keeps it centred horizontally */
+  display: center;
+  align-items: center;     /* vertical centre of text */
+  justify-content: center; /* horizontal centre */
 
   background: url("background.png") no-repeat center center fixed;
   background-size: 120% auto; /* width slightly bigger than 100%, height adjusts automatically */
@@ -29,7 +30,7 @@ body::before {                     /*for transparent screen at top */
   left: 0;
   width: 120%;
   height: 120%;
-  background: rgba(255, 255, 255, 0.7);  /* change 0.65 to control transparency */
+  background: rgba(255, 255, 255, 0.7);  /* change 0.7 to control transparency */
   z-index: -1;
 }
 
@@ -41,11 +42,11 @@ body::before {                     /*for transparent screen at top */
 
 h1 {
   font-family: 'Playfair Display', serif;
-  font-size: 42px;
+  font-size: 60px;
 }
 
 .subtitle {
-  font-size: 18px;
+  font-size: 22px;
   line-height: 1.7;
   margin-bottom: 50px;
 }  
