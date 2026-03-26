@@ -8,23 +8,28 @@
 
 <style>
 body {
-  margin: 0;
+  height: 100vh;
   font-family: 'Libre Baskerville', serif;
   text-align: center;
   color: #000;
 
+  display: flex;
+  align-items: flex-start;  /* not perfectly vertical centred, but just about */
+  padding-top: 120px;    
+  justify-content: center; /* horizontal centre */
+
   background: url("background.png") no-repeat center center fixed;
-  background-size: 110% auto; /* width slightly bigger than 100%, height adjusts automatically */
+  background-size: 120% auto; /* width slightly bigger than 100%, height adjusts automatically */
   background-position: center center;
 }
 
-body::before {
+body::before {                     /*for transparent screen at top */
   content: "";
   position: fixed;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
+  width: 120%;
+  height: 120%;
   background: rgba(255, 255, 255, 0.7);  /* change 0.65 to control transparency */
   z-index: -1;
 }
@@ -32,7 +37,7 @@ body::before {
 .container {
   max-width: 700px;
   margin: auto;
-  padding: 80px 20px;
+  padding: 20px;
 }
 
 h1 {
