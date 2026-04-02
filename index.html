@@ -34,12 +34,18 @@ body::before {                     /*for transparent screen at top */
   height: 130%;
   background: rgba(255, 255, 255, 0.75);  /* change 0.7 to control transparency */
   z-index: -1;
+  overflow: hidden;   /* 🔑 stops scrolling */
 }
 
 .container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
   max-width: 700px;
-  margin: 0 auto;
-  padding: 80px 20px 40px 20px;
+  width: 90%;
+  padding: 20px;   /* reduced padding */
 }
 
 .title {
