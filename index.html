@@ -42,11 +42,23 @@ body::before {                     /*for transparent screen at top */
   padding: 80px 20px 40px 20px;
 }
 
-h1 {
+.title {
+  position: absolute;
+  top: 50px;
+  left: 60px;
+
   font-family: 'Playfair Display', serif;
-  font-size: 100px;
-  margin-top: 0;
-  margin-bottom: 40px;   /* THIS creates the space before the paragraph */
+  font-size: 80px;          /* slightly reduced from 100 for elegance */
+  line-height: 1.05;
+
+  margin: 0;
+  text-align: left;
+}
+
+.title span {
+  font-size: 28px;          /* smaller "The" */
+  letter-spacing: 3px;
+  text-transform: uppercase;
 }
 
 .subtitle {
@@ -76,8 +88,10 @@ input {
 
 <div class="container">
 
-<h1>The 
-  Grand Finale</h1>
+<h1 class="title">
+  <span>The</span><br>
+  Grand Finale
+</h1>
 
 <p class="subtitle">
 <br><br>
