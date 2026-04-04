@@ -41,6 +41,8 @@ body::before {
   padding: 0 20px;
   text-align: center;
 
+  transform: translateY(-40px);  /* 🔑 shifts everything up */
+  
   animation: fadeIn 1.5s ease;
 }
 
@@ -51,23 +53,23 @@ body::before {
   left: 25px;
 
   font-family: 'Playfair Display', serif;
-  font-size: 42px;
+  font-size: 60px;
   font-weight: 500;
   line-height: 1;
 }
 
 .title span {
-  font-size: 12px;
+  font-size: 28px;
   letter-spacing: 4px;
   display: block;
-  margin-bottom: 5px;
+  margin-bottom: 6px;
 }
 
 /* subtitle */
 .subtitle {
-  font-size: 16px;
+  font-size: 20px;
   line-height: 1.8;
-  max-width: 280px;
+  max-width: 320px;
   margin-top: 60px;
   margin-bottom: 30px;
 }
@@ -75,11 +77,11 @@ body::before {
 /* input */
 input {
   width: 260px;
-  padding: 12px 16px;
+  padding: 16px 16px;
   border: 1px solid rgba(0,0,0,0.3);
   background: rgba(255,255,255,0.6);
   font-family: 'Lora', serif;
-  font-size: 14px;
+  font-size: 19px;
   outline: none;
 
   transition: all 0.3s ease;
