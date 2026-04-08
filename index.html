@@ -42,13 +42,15 @@ body::before {
 
   padding: 0 20px;
   text-align: center;
-
-  transform: translateY(-60px);  /* shifts everything up */
-
-  animation: fadeIn 1.8s cubic-bezier(0.22, 1, 0.36, 1);
-  
 }
 
+.content {
+  transform: translateY(20px);
+  opacity: 0;
+
+  animation: fadeIn 1.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+  
 /* title */
 .title {
   position: absolute;
@@ -134,14 +136,9 @@ input::placeholder {
 
 /* fade animation */
 @keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(10px);
-  }
   to {
     opacity: 1;
     transform: translateY(0);
-    opacity: 1;
   }
 }
 
@@ -152,24 +149,27 @@ input::placeholder {
 
 <div class="container">
 
-<h1 class="title">
-  <span>THE</span>
-  Grand Finale
-</h1>
+  <h1 class="title">
+    <span>THE</span>
+    Grand Finale
+  </h1>
 
-<p class="subtitle">
-To help you find your seat, kindly enter your name below.
-</p>
+  <div class="content">   <!-- ✅ NEW -->
 
-<input type="text" id="search" placeholder="Enter your name here">
+    <p class="subtitle">
+      To help you find your seat, kindly enter your name below.
+    </p>
 
-<div class="result-card" id="resultCard">
-  <div class="result-name" id="resultName"></div>
-  <div class="result-table" id="resultTable"></div>
+    <input type="text" id="search" placeholder="Enter your name here">
+
+    <div class="result-card" id="resultCard">
+      <div class="result-name" id="resultName"></div>
+      <div class="result-table" id="resultTable"></div>
+    </div>
+
+  </div>
+
 </div>
-
-</div>
-
 <script src="https://cdn.jsdelivr.net/npm/xlsx/dist/xlsx.full.min.js"></script>
 
 <script>
