@@ -19,11 +19,13 @@ body {
   color: #111;
   font-display: swap;
 
-  background: url("background.jpeg") no-repeat center center fixed;
+  background: url("Ayushi & Yash.png") no-repeat center center fixed;
   background-size: cover;
+
+  animation: bgFade 2s ease-out forwards;
 }
 
-/* soft overlay */
+/* soft overlay 
 body::before {
   content: "";
   position: fixed;
@@ -32,7 +34,7 @@ body::before {
     rgba(255,255,255,0.55),
     rgba(255,255,255,0.35));
   z-index: -1;
-}
+}*/
 
 /* main container */
 .container {
@@ -41,16 +43,16 @@ body::before {
 
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-end;
   align-items: center;
 
   padding: 0 20px;
-  padding-top: 40px;
+  padding-bottom: 80px;     /*shifts things downwards */
   text-align: center;
 }
 
 .content {
-  transform: translateY(-40px);
+  /* transform: translateY(-40px); */  /*shifts things upwards */
   opacity: 0;
 
   animation: fadeIn 2.5s cubic-bezier(0.22, 1, 0.36, 1) forwards;
@@ -81,6 +83,7 @@ body::before {
   margin-bottom: 6px;
 }
 
+  
 /* subtitle */
 .subtitle {
   font-size: 25px;
@@ -182,7 +185,7 @@ input::placeholder {
     Grand Finale
   </h1>
 
-  <div class="content">   <!-- ✅ NEW -->
+  <div class="content">  
 
     <p class="subtitle">
       To help you find your seat, kindly enter your name below.
