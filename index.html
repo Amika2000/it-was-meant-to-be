@@ -13,11 +13,13 @@ body {
   height: 100svh;
   overflow: hidden;
 
+  position: relative;
+  
   font-family: 'Lora', serif;
   color: #000;
   font-display: swap;
 
-  background: url("background.png") no-repeat center center fixed;
+  background: url("background.jpeg") no-repeat center center fixed;
   background-size: cover;
 }
 
@@ -26,8 +28,8 @@ body::before {
   content: "";
   position: fixed;
   inset: 0;
-  background: rgba(255,255,255,0.6);
-  z-index: -1;
+  background: rgba(255,255,255,0.7);
+  z-index: 0;
 }
 
 /* main container */
