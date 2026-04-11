@@ -19,9 +19,12 @@ body {
   color: #111;
   font-display: swap;
 
-  background: url("A-Y 2.png") no-repeat center center fixed;
+  background: url("A-Y 2.png");
+  background-size: 92%;      /* 🔑 controlled zoom */
+  background-position: right center;  /* 🔑 keeps polaroids visible */
+  background-repeat: no-repeat;
   background-size: contain;   /* shows full polaroids */
-  background-color: #e9e9e9;  /* fills empty space nicely */
+  background-color: #efefef; 
 
 }
 
@@ -53,7 +56,7 @@ body::before {
 .content {
   max-width: 420px;              /* keeps it elegant */
   
-  margin-top: 90px;             /* pushes below title */
+  margin-top: 80px;             /* pushes below title */
   
   transform: translateY(20px);
   opacity: 0;
@@ -92,9 +95,10 @@ body::before {
   font-size: 26px;
   line-height: 1.6;
 
-  margin-bottom: 40px;
+  margin-top: 30px;     /* adds space from title */
+  margin-bottom: 45px;  /* more breathing room */
 
-  max-width: 380px;   /* THIS controls line breaks */
+  max-width: 300px;   /* THIS controls line breaks */
 }
 
 /* input */
@@ -162,8 +166,8 @@ input::placeholder {
 
 .result-table {
   margin-top: 8px;
-  font-size: 14px;
-  letter-spacing: 2px;
+  font-size: 13px;
+  letter-spacing: 3px;
   text-align: center;
 }
 
