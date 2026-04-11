@@ -20,7 +20,8 @@ body {
   font-display: swap;
 
   background: url("A-Y 2.png") no-repeat center center fixed;
-  background-size: cover;
+  background-size: contain;   /* shows full polaroids */
+  background-color: #e9e9e9;  /* fills empty space nicely */
 
 }
 
@@ -52,7 +53,7 @@ body::before {
 .content {
   max-width: 420px;              /* keeps it elegant */
   
-  margin-top: 140px;             /* pushes below title */
+  margin-top: 90px;             /* pushes below title */
   
   transform: translateY(20px);
   opacity: 0;
@@ -69,6 +70,8 @@ body::before {
   font-family: 'Playfair Display', serif;
   font-size: 80px;   /* slightly reduced */
   line-height: 0.95;
+
+  text-align: center; 
 
   opacity: 0;
   transform: translateY(20px);
@@ -120,8 +123,12 @@ input::placeholder {
 /* place card result */
 .result-card {
   display: block;
-  margin: 20px auto 0 auto;
-  margin-top: 30px;
+  
+  align-self: center;   /* THIS centers it under input */
+
+  text-align: center;   /*  center text inside */
+  
+  margin-top: 20px;
   padding: 10px 16px;
 
   background: rgba(255,255,255,0.75);
@@ -150,12 +157,14 @@ input::placeholder {
   font-size: 22px;
   letter-spacing: 1px;
   text-transform: capitalize;
+  text-align: center;
 }
 
 .result-table {
   margin-top: 8px;
   font-size: 14px;
   letter-spacing: 2px;
+  text-align: center;
 }
 
 /* fade animation */
