@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html> 
+<head>
+<meta charset="UTF-8">
+<title>Find Your Table</title>
+ 
+
+<style>
+
+@font-face {
+  font-family: 'The Seasons Light';
+  src: url('The Seasons Light.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Glacial Indifference';
+  src: url('glacial-indifference-regular.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+  
+body {
+  margin: 0;
+  min-height: 100dvh;
+  overflow: hidden;
+
+  position: relative;
+  
+  font-family: 'Glacial Indifference', serif;
+  color: #111;
+  font-display: swap;
+
+  background: url("A-Y 4.png");
+  background-position: center; 
+  background-repeat: no-repeat;
+  background-size: cover;    /* full image as is */
+
+}
+
+/* main container */
+.container {
+  position: relative;   /* stabilizes layout */
+  height: 100vh;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;   
+  align-items: center;       
+
+  padding: 100px 40px;            /* spacing from edges */
+  text-align: center;
+}
+
+.content {
+  max-width: 800px;              /* how many lines text is fitting in; increasing it leads to less lines */
+  
+  margin-top: 550px;             /* pushes below title; decreasing means closer to title */
+  
+  opacity: 0;
+
+  transform: translateY(20px);    /* animation transforms upwards */
+  animation: fadeIn 2.5s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+  
+/* title */
+.title {
+  position: absolute;
+  top: 190px;
+  left: 50%;
+
+  font-family: 'The Seasons Light', serif;
+  font-size: 120px;
+  letter-spacing: 1.5px;
+ 
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+ 
+  line-height: 1;
+  white-space: nowrap;
+
+  text-align: center; 
+
+  opacity: 0;
+  transform: translateX(-50%);    /* centers horizontally */
+  animation: fadeInTitle 1.6s ease forwards;
+  animation-delay: 0.3s;   /* slight delay */
+}
+
+.title span {
+  font-size: 38px;
+  letter-spacing: 4px;
+  display: block;
+  margin-bottom: 24px;
+}
+
+  
+/* subtitle */
+.subtitle {
+  font-size: 30px;
+  line-height: 1.6;
+
+  margin-top: 0px;     /* adds space from title */
+  margin-bottom: 40px;  /* more breathing room */
+
+  transform: translateY(-50px);
+
+  white-space: nowrap;     /* forces single line */
+}
+
+/* input */
+input {
+  width: 70%;
+  max-width: 350px;
+  
+  padding: 12px 14px;
+  margin-top: 40px;
+  
+  border: 1px solid rgba(0,0,0,0.3);
+  background: rgba(255,255,255,0.6);
+  
+  font-family: 'Glacial Indifference', serif;
+  font-size: 25px;
+  outline: none;
+
+  transition: all 0.3s ease;
+}
+
+input:focus {
+  border-color: #000;
+  background: rgba(255,255,255,0.8);
+}
+
+input::placeholder {
+  color: rgba(0,0,0,0.5);
+  text-align: center;
+}
+
+/* place card result */
+.result-card {
+  display: block;
+  margin: 15px auto 0 auto;   /* centers perfectly under input */
+
+  text-align: center;   /*  center text inside */
+  
+  padding: 10px 16px;
+
+  background: rgba(255,255,255,0.75);
+  border: 1px solid rgba(0,0,0,0.2);
+
+  font-family: 'Playfair Display', serif;
+
+  width: fit-content;               /* 🔑 shrink to content */
+  max-width: 90%;            /* keeps it responsive */
+
+  opacity: 0;
+  transform: translateY(10px) scale(0.98);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+
+  transition: 
+  opacity 0.6s ease,
+  transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.result-card.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.result-name {
+  font-size: 20px;
+  letter-spacing: 1px;
+  text-transform: capitalize;
+  text-align: center;
+}
+
+.result-table {
+  margin-top: 8px;
+  font-size: 14px;
+  letter-spacing: 3px;
+  text-align: center;
+}
+
+/* fade animation */
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInTitle {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(20px);   /* animation handles movement */
+  }
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+}
+  
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+  <h1 class="title">
+    <span>THE</span>
+    Grand Finale
+  </h1>
+
+  <div class="content">  
+
+    <p class="subtitle">
+      Enter your name to find your seat
+    </p>
+
+    <input type="text" id="search" placeholder="Enter your name here">
+
+    <div class="result-card" id="resultCard">
+      <div class="result-name" id="resultName"></div>
+      <div class="result-table" id="resultTable"></div>
+    </div>
+
+  </div>
+
+</div>
+<script src="https://cdn.jsdelivr.net/npm/xlsx/dist/xlsx.full.min.js"></script>
+
+<script>
+
+fetch("Ayushwari and Yash Seating Table Reception FINAL.xlsx")
+.then(res => res.arrayBuffer())
+.then(data => {
+
+  const workbook = XLSX.read(data);
+  const sheet = workbook.Sheets[workbook.SheetNames[0]];
+  const rows = XLSX.utils.sheet_to_json(sheet);
+
+  const guests = rows.map(r => ({
+    name: r.Name.toLowerCase(),
+    table: r.Table
+  }));
+
+  const input = document.getElementById("search");
+  const card = document.getElementById("resultCard");
+  const nameEl = document.getElementById("resultName");
+  const tableEl = document.getElementById("resultTable");
+
+  input.addEventListener("input", function(e) {
+
+    const value = e.target.value.toLowerCase();
+
+    const match = guests.find(g => g.name.includes(value));
+
+    if(match && value.length > 1){
+
+      nameEl.innerHTML = match.name;
+      tableEl.innerHTML = "TABLE " + match.table;
+
+      card.classList.add("show");
+
+    } else if(value.length > 1){
+
+      nameEl.innerHTML = "Name not found";
+      tableEl.innerHTML = "";
+
+      card.classList.add("show");
+
+    } else {
+      card.classList.remove("show");
+    }
+
+  });
+
+});
+</script>
+
+</body>
+</html>
